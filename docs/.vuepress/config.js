@@ -1,7 +1,15 @@
 module.exports = {
-  title: "Luminosity Blogs",
+  title: "Luminosity Blog",
   description: "An awesome documentation website built with VuePress.",
-  plugins: ["@vuepress/back-to-top"],
+  plugins: [
+    ["@vuepress/back-to-top"],
+    // [
+    //   "vuepress-plugin-code-copy",
+    //   {
+    //     successText: "复制成功",
+    //   },
+    // ],
+  ],
   head: [["link", { rel: "icon", href: "/favicon.ico" }]],
   themeConfig: {
     logo: "/ming.png",
@@ -35,7 +43,15 @@ module.exports = {
           title: "VUE",
           collapsable: false,
           sidebarDepth: 3,
-          children: ["gtt", "vue3", "slot", "calendar", "pc-ph"],
+          children: [
+            "gtt",
+            "vue3",
+            "slot",
+            "calendar",
+            "pc-ph",
+            "require",
+            "directives",
+          ],
         },
       ],
       "/blog/micro/": [
@@ -51,7 +67,17 @@ module.exports = {
           title: "服务器",
           collapsable: false,
           sidebarDepth: 3,
-          children: ["website", "website2", "ssl"],
+          children: [
+            "website",
+            "website2",
+            "ssl",
+            "IIS",
+            "ubuntu-minio",
+            "minio-https",
+            "springboot-cos",
+            "springboot-minio",
+            "remote-connect",
+          ],
         },
       ],
     },

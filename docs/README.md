@@ -1,7 +1,7 @@
 ---
 home: true
 heroImage: /ming.png
-heroText: Luminosity Blogs
+heroText: Luminosity Blog
 tagline: People cannot have both youth and feelings of youth at the same time.
 actionText: See →
 actionLink: /blog/css/animation

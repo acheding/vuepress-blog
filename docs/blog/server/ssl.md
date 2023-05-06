@@ -2,24 +2,24 @@
 
 工具：WinSCP、putty
 
-## 1.下载证书
+## 下载证书
 
 - cloud.tencent.com_bundle.crt 证书文件
 - cloud.tencent.com_bundle.pem 证书文件（可忽略该文件）
 - cloud.tencent.com.key 私钥文件
 - cloud.tencent.com.csr CSR 文件
 
-## 2.上传证书到服务器
+## 上传证书到服务器
 
 通过 WinSCP 将已获取到的 cloud.tencent.com_bundle.crt 证书文件和 cloud.tencent.com.key 私钥文件从本地目录拷贝到 Nginx 服务器的 /etc/nginx 目录（此处为 Nginx 默认安装目录，请根据实际情况操作）下。
 
 ![ssl-1](https://zhang.beer:9999/ache/beer/blog/ssl-1.png)
 
-## 3.配置 SSL
+## 配置 SSL
 
 以下两种方式都可。
 
-① 第一种方式：先编辑 Nginx 根目录下的 nginx.conf 文件。增加如下内容：
+1.第一种方式：先编辑 Nginx 根目录下的 nginx.conf 文件。增加如下内容：
 
 ![ssl-2](https://zhang.beer:9999/ache/beer/blog/ssl-2.png)
 
@@ -29,7 +29,7 @@
 
 亲测成功。
 
-② 第二种方式：编辑 nginx 根目录下的 sites-enabled 下的 default 文件。修改内容如下：
+2.第二种方式：编辑 nginx 根目录下的 sites-enabled 下的 default 文件。修改内容如下：
 
 ```
 server {
@@ -56,7 +56,7 @@ server {
  }
 ```
 
-## 4.验证并重启 nginx
+## 验证并重启 nginx
 
 ```
 nginx -t

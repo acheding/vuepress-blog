@@ -1,6 +1,6 @@
 # 如何搭建自己的网站（二）
 
-## 一、ubuntu 安装数据库
+## ubuntu 安装数据库
 
 1.安装
 
@@ -53,7 +53,7 @@ update user set host = '%' where user = 'root';
 flush privileges;
 ```
 
-## 二、mybatis 连接数据库
+## mybatis 连接数据库
 
 1.新建 demoMybatis 项目
 
@@ -155,7 +155,7 @@ docker build -t my/demo .
 docker run -d --name demo -p 8080:8080 my/demo
 ```
 
-## 三、vue 搜索关键字高亮
+## vue 搜索关键字高亮
 
 ```js
 const highLight = (allText, keyword) => {
@@ -174,6 +174,6 @@ const highLight = (allText, keyword) => {
 };
 ```
 
-## 四、成功辽
+## 成功辽
 
 ![website2-6](https://zhang.beer:9999/ache/beer/blog/website2-6.png)
