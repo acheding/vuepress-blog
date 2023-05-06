@@ -1,6 +1,7 @@
 module.exports = {
   title: "Luminosity Blog",
   description: "An awesome documentation website built with VuePress.",
+  base: "/vuepress/",
   plugins: [
     ["@vuepress/back-to-top"],
     // [

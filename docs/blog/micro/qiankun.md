@@ -242,6 +242,8 @@ mounted() {
 }
 ```
 
+::: tip
 最后，同时运行主应用和微应用。
+:::
 
 qiankun 官网：<https://qiankun.umijs.org/zh/guide>
