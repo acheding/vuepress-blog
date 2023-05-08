@@ -8,7 +8,7 @@ module.exports = {
     logo: "/ming.png",
     // displayAllHeaders: true,
     smoothScroll: true,
-    lastUpdated: "Last Updated",
+    lastUpdated: "上次更新",
     nav: [
       { text: "Home", link: "/" },
       {
