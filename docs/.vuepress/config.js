@@ -2,7 +2,20 @@ module.exports = {
   title: "Luminosity Blog",
   description: "An awesome documentation website built with VuePress.",
   base: "/vuepress/",
-  plugins: [["@vuepress/back-to-top"], ["@vuepress/medium-zoom"]],
+  plugins: [
+    ["@vuepress/back-to-top"],
+    ["@vuepress/medium-zoom"],
+    [
+      "@vuepress/last-updated",
+      {
+        transformer: (timestamp, lang) => {
+          const moment = require("moment");
+          moment.locale(lang);
+          return moment(timestamp).fromNow();
+        },
+      },
+    ],
+  ],
   head: [["link", { rel: "icon", href: "/favicon.ico" }]],
   themeConfig: {
     logo: "/ming.png",
