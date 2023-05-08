@@ -2,7 +2,7 @@ module.exports = {
   title: "Luminosity Blog",
   description: "An awesome documentation website built with VuePress.",
   base: "/vuepress/",
-  plugins: [["@vuepress/back-to-top"]],
+  plugins: [["@vuepress/back-to-top"], ["@vuepress/medium-zoom"]],
   head: [["link", { rel: "icon", href: "/favicon.ico" }]],
   themeConfig: {
     logo: "/ming.png",
@@ -27,7 +27,7 @@ module.exports = {
           title: "CSS",
           collapsable: false,
           // collapsed: false,
-          sidebarDepth: 3,
+          sidebarDepth: 2,
           children: ["", "animation", "pseudo-elements", "anchor"],
         },
       ],
@@ -35,7 +35,7 @@ module.exports = {
         {
           title: "VUE",
           collapsable: false,
-          sidebarDepth: 3,
+          sidebarDepth: 2,
           children: [
             "",
             "gtt",
@@ -52,7 +52,7 @@ module.exports = {
         {
           title: "微前端",
           collapsable: false,
-          sidebarDepth: 3,
+          sidebarDepth: 2,
           children: ["", "qiankun", "wujie"],
         },
       ],
@@ -60,7 +60,7 @@ module.exports = {
         {
           title: "服务器",
           collapsable: false,
-          sidebarDepth: 3,
+          sidebarDepth: 2,
           children: [
             "",
             "website",
