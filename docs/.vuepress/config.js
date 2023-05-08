@@ -6,8 +6,9 @@ module.exports = {
   head: [["link", { rel: "icon", href: "/favicon.ico" }]],
   themeConfig: {
     logo: "/ming.png",
-    displayAllHeaders: true,
+    // displayAllHeaders: true,
     smoothScroll: true,
+    lastUpdated: "Last Updated",
     nav: [
       { text: "Home", link: "/" },
       {
@@ -26,7 +27,7 @@ module.exports = {
         {
           title: "CSS",
           collapsable: false,
-          // collapsed: false,
+          // collapsed: true,
           sidebarDepth: 2,
           children: ["", "animation", "pseudo-elements", "anchor"],
         },
