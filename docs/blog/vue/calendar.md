@@ -73,6 +73,8 @@ const getSchedules = computed(() => {
 
 ![calendar-2](https://zhang.beer:9999/ache/beer/blog/calendar-2.png)
 
+::: details 点击查看代码
+
 ```vue
 <script setup>
 import axios from "axios";
@@ -163,3 +165,5 @@ const getOneSchedule = computed(() => {
 }
 </style>
 ```
+
+:::

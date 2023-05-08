@@ -4,7 +4,7 @@ heroImage: /ming.png
 heroText: Luminosity Blog
 tagline: People cannot have both youth and feelings of youth at the same time.
 actionText: See →
-actionLink: /blog/css/animation
+actionLink: /blog/css/
 features:
   - title: Simplicity First
     details: Minimal setup with markdown-centered project structure helps you focus on writing.

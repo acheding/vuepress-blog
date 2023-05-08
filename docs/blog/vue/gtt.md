@@ -64,6 +64,8 @@ z 则用于控制图形显示的的堆叠顺序，就像 css 中的 z-index 属�
 
 ![gtt-4](https://zhang.beer:9999/ache/beer/blog/gtt-4.png)
 
+::: details 点击查看代码
+
 ```js
 props: {
     jobRowData: Object // 查看作业实例当前行
@@ -293,3 +295,5 @@ methods: {
   }
 }
 ```
+
+:::
