@@ -2,7 +2,7 @@
 
 ### idea 报错：
 
-> Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure.
+> Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
 
 > The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.] with root cause
 

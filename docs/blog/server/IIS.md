@@ -1,4 +1,4 @@
-# Vite+Vue3 项目部署到 IIS 报错 404
+# Vite+Vue3+IIS 报错 404
 
 1.根本原因：vue-router 使用 hash 模式：使用 URL 的 hash 来模拟一个完整的 URL，于是当 URL 改变时，页面不会重新加载。
 

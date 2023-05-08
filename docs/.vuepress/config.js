@@ -2,15 +2,7 @@ module.exports = {
   title: "Luminosity Blog",
   description: "An awesome documentation website built with VuePress.",
   base: "/vuepress/",
-  plugins: [
-    ["@vuepress/back-to-top"],
-    // [
-    //   "vuepress-plugin-code-copy",
-    //   {
-    //     successText: "复制成功",
-    //   },
-    // ],
-  ],
+  plugins: [["@vuepress/back-to-top"]],
   head: [["link", { rel: "icon", href: "/favicon.ico" }]],
   themeConfig: {
     logo: "/ming.png",
@@ -21,10 +13,10 @@ module.exports = {
       {
         text: "Blog",
         items: [
-          { text: "CSS", link: "/blog/css/animation" },
-          { text: "VUE", link: "/blog/vue/gtt" },
-          { text: "微前端", link: "/blog/micro/qiankun" },
-          { text: "服务器", link: "/blog/server/website" },
+          { text: "CSS", link: "/blog/css/" },
+          { text: "VUE", link: "/blog/vue/" },
+          { text: "微前端", link: "/blog/micro/" },
+          { text: "服务器", link: "/blog/server/" },
         ],
       },
       { text: "GitHub", link: "https://github.com/fadeache" },
@@ -36,7 +28,7 @@ module.exports = {
           collapsable: false,
           // collapsed: false,
           sidebarDepth: 3,
-          children: ["animation", "pseudo-elements", "anchor"],
+          children: ["", "animation", "pseudo-elements", "anchor"],
         },
       ],
       "/blog/vue/": [
@@ -45,6 +37,7 @@ module.exports = {
           collapsable: false,
           sidebarDepth: 3,
           children: [
+            "",
             "gtt",
             "vue3",
             "slot",
@@ -60,7 +53,7 @@ module.exports = {
           title: "微前端",
           collapsable: false,
           sidebarDepth: 3,
-          children: ["qiankun", "wujie"],
+          children: ["", "qiankun", "wujie"],
         },
       ],
       "/blog/server/": [
@@ -69,6 +62,7 @@ module.exports = {
           collapsable: false,
           sidebarDepth: 3,
           children: [
+            "",
             "website",
             "website2",
             "ssl",
