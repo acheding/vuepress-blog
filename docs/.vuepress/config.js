@@ -79,6 +79,7 @@ module.exports = {
             "",
             "website",
             "website2",
+            "interface",
             "ssl",
             "IIS",
             "ubuntu-minio",
