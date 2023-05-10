@@ -59,6 +59,7 @@ module.exports = {
             "pc-ph",
             "require",
             "directives",
+            "load-optimization",
           ],
         },
       ],
