@@ -1,6 +1,6 @@
 # Vite+Vue3 加载速度优化
 
-可以考虑从以下几个方面优化。
+可以考虑从以下几个方面优化。整体思路：1.减小打包体积。2.异步加载。
 
 ## 静态资源拆分打包
 
@@ -74,9 +74,9 @@ server {
 }
 ```
 
-## 部分依赖不打包，引入 cdn 加速
+## 部分依赖不打包，引入 cdn
 
-和上面的方法思路一样，减少打包后的文件体积。在没有使用 cdn 加速之前，例如 element-plus、@element-plus/icons-vue、vue、vux、axios、vue-router、echarts 等依赖都会打包，导致 vendor.js 体积很大，影响首屏加载速度。
+在没有使用 cdn 加速之前，例如 element-plus、@element-plus/icons-vue、vue、vux、axios、vue-router、echarts 等依赖都会打包，导致 vendor.js 体积很大，影响首屏加载速度。
 
 这个优化则是选择性地将这些第三方依赖不加入打包，部署到线上之后直接引用线上 cdn 地址。
 
@@ -173,4 +173,53 @@ export default defineConfig({
   </body>
   <style></style>
 </html>
+```
+
+## 路由懒加载
+
+在路由中通常会定义很多不同的页面，打包到同一个 js 文件中，文件将会异常的大，路由懒加载就是将各个模块分开打包，匹配到对应路由时再加载对应模块，减少加载时间。
+
+也就是说，一开始进入页面时不需要一次性把资源都加载完，需要时在加载对应的资源。
+
+以下介绍两种实现路由懒加载的方式。
+
+1.ES6 的 import()
+
+```js
+const routes = [
+  {
+    path: item.path,
+    name: item.name,
+    component: () => import(`/src/views/${item.view}.vue`),
+  },
+];
+```
+
+2.Vite 的 import.meta.glob()
+
+```js
+const modules = import.meta.glob("/src/views/*.vue");
+
+const routes = [
+  {
+    path: item.path,
+    name: item.name,
+    component: modules[`/src/views/${item.view}.vue`],
+  },
+];
+```
+
+## 组件异步加载
+
+在 Vue 3.x 中，异步组件的导入需要使用辅助函数 defineAsyncComponent 来进行显式声明。
+
+```vue
+<script setup>
+import { defineAsyncComponent } from "vue";
+const child = defineAsyncComponent(() => import("/src/components/child.vue"));
+</script>
+
+<template>
+  <child></child>
+</template>
 ```
