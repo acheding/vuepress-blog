@@ -134,7 +134,7 @@ function addImage(PDF, pageData, position, imgWidth, imgHeight, currentHeight) {
 这个时候新的问题出现了，由于页面布局为 flex 布局，不同缩放下，每行的元素数量会出现变化。所以我们获取第一个子元素与 a4 纸宽度关系，如果为 n 倍，那后面 n-1 个子元素的高度不进行累加。
 
 ::: warning 注意
-这里只解决了一行 n 子元素宽度相等，且近似等于 a4 纸宽度的 1/n 的情况。
+这里只解决了一行 n 个子元素宽度相等，且近似等于 a4 纸宽度的 1/n 的情况。
 :::
 
 ::: details 点击查看代码
