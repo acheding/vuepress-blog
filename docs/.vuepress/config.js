@@ -60,6 +60,7 @@ module.exports = {
             "require",
             "directives",
             "load-optimization",
+            "export-pdf",
           ],
         },
       ],
