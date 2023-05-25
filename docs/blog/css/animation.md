@@ -2,7 +2,7 @@
 
 <https://zhang.beer/animation>
 
-![animation](https://zhang.beer:9999/ache/beer/blog/animation.gif)
+![animation](https://zhang.beer/static/images/animation.gif)
 
 - 太阳：sun 控制旋转， .sun span 控制光线的伸长与缩短，值得一提的是在这里 box-shadow 比伪元素更好用， 渲染了橙色的阴影，下面给出了代码。
 - 山：本体是一个正方形盒子，先旋转 45° ，通过 ::before 和 ::after 延长两边，辅以阴影。

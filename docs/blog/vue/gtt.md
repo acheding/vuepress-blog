@@ -12,7 +12,7 @@ ECharts 是一个使用 JavaScript 实现的开源可视化库，提供直观，
 
 stack 用于数据堆叠，同个类目轴上系列配置相同的 stack 后，后一个系列的值会在前一个系列的值上相加，堆叠在同一条状数据上，当 stack 不同时，同个类目轴上后一个系列的值则会另起一行/列显示。
 
-![gtt-1](https://zhang.beer:9999/ache/beer/blog/gtt-1.png)
+![gtt-1](https://zhang.beer/static/images/gtt-1.png)
 
 ```js
 series: [
@@ -31,7 +31,7 @@ series: [
 ];
 ```
 
-![gtt-2](https://zhang.beer:9999/ache/beer/blog/gtt-2.png)
+![gtt-2](https://zhang.beer/static/images/gtt-2.png)
 
 ```js
 series: [
@@ -56,13 +56,13 @@ z 则用于控制图形显示的的堆叠顺序，就像 css 中的 z-index 属�
 
 有了以上的知识铺垫，下面来看看后端传过来的数据格式如何，根据具体情况随机应变。
 
-![gtt-3](https://zhang.beer:9999/ache/beer/blog/gtt-3.png)
+![gtt-3](https://zhang.beer/static/images/gtt-3.png)
 
 可以看到，这一条数据包含 8 个任务，每个任务都只有一种状态，状态的开始时间和结束时间也一并给出，那么就只需要将 stack 都设置相同，同时将开始时间的 z 值设置的比结束时间大，用开始时间覆盖结束时间，即可实现甘特图效果。
 
 另外，细节处理方面，需要注意的是，开始时间和结束时间都需要传一整组数据，在对应的位置赋值，其余位置置空，才能保证开始时间和结束时间位于同一起点达到覆盖效果。同时，将开始时间的条状图设置为背景色，结束时间的条状图边框设置为背景色，这样，便大功告成了。
 
-![gtt-4](https://zhang.beer:9999/ache/beer/blog/gtt-4.png)
+![gtt-4](https://zhang.beer/static/images/gtt-4.png)
 
 ::: details 点击查看代码
 

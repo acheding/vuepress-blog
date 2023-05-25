@@ -1,6 +1,6 @@
 # 伪元素实现菜单动画
 
-![pseudo-elements](https://zhang.beer:9999/ache/beer/blog/pseudo-elements.gif)
+![pseudo-elements](https://zhang.beer/static/images/pseudo-elements.gif)
 
 基本思想是固定一个初始类 original ，当选中时通过 :class 动态增加一个 active 的类，在 active 出现或消失时插入过渡动画。
 

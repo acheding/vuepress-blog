@@ -9,7 +9,7 @@ const getAllSchedules = async () => {
 };
 ```
 
-![calendar-1](https://zhang.beer:9999/ache/beer/blog/calendar-1.png)
+![calendar-1](https://zhang.beer/static/images/calendar-1.png)
 
 2.计算属性同步更新日程
 
@@ -71,7 +71,7 @@ const getSchedules = computed(() => {
 
 5.最终效果及完整代码如下
 
-![calendar-2](https://zhang.beer:9999/ache/beer/blog/calendar-2.png)
+![calendar-2](https://zhang.beer/static/images/calendar-2.png)
 
 ::: details 点击查看代码
 

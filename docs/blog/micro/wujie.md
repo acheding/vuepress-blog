@@ -148,11 +148,11 @@ single-spa 是一个目前主流的微前端技术方案，其主要实现思路
 
 ## 实现
 
-![wujie](https://zhang.beer:9999/ache/beer/blog/wujie.gif)
+![wujie](https://zhang.beer/static/images/wujie.gif)
 
 这里主应用使用了 vue3+vite，子应用使用了 vue2+webpack。
 
-![wujie-code](https://zhang.beer:9999/ache/beer/blog/wujie-code.png)
+![wujie-code](https://zhang.beer/static/images/wujie-code.png)
 
 1.主应用下载依赖(package.json)
 

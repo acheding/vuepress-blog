@@ -285,6 +285,6 @@ function addImage(PDF, pageData, position, imgWidth, imgHeight, currentHeight) {
 
 不同缩放下导出 PDF 对比：
 
-[每行一个子元素](https://zhang.beer:9999/ache/beer/blog/export-pdf-1.pdf)
+[每行一个子元素](https://zhang.beer/static/images/export-pdf-1.pdf)
 
-[每行多个子元素](https://zhang.beer:9999/ache/beer/blog/export-pdf-2.pdf)
+[每行多个子元素](https://zhang.beer/static/images/export-pdf-2.pdf)

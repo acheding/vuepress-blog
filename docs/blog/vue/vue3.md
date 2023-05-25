@@ -42,7 +42,7 @@ defineProps({
 ```
 
 效果：
-![vue3-1](https://zhang.beer:9999/ache/beer/blog/vue3-1.png)
+![vue3-1](https://zhang.beer/static/images/vue3-1.png)
 
 ## 子组件向父组件通信
 
@@ -92,7 +92,7 @@ const getSonData = (value) => {
 ```
 
 效果：
-![vue3-2](https://zhang.beer:9999/ache/beer/blog/vue3-2.gif)
+![vue3-2](https://zhang.beer/static/images/vue3-2.gif)
 
 ## 兄弟组件通信
 
@@ -168,4 +168,4 @@ const getSonData = (val) => {
 
 效果：
 
-![vue3-3](https://zhang.beer:9999/ache/beer/blog/vue3-3.gif)
+![vue3-3](https://zhang.beer/static/images/vue3-3.gif)

@@ -41,7 +41,7 @@ iframe 最大的特性就是提供了浏览器原生的硬隔离方案，不论�
 
 ## qiankun 实现
 
-![qiankun](https://zhang.beer:9999/ache/beer/blog/qiankun.gif)
+![qiankun](https://zhang.beer/static/images/qiankun.gif)
 
 ### 主应用
 

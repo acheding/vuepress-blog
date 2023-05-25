@@ -6,6 +6,6 @@
 
 我们只需要在 nginx 配置文件中新暴露一个 SSL 端口，并转发到我们的 http 地址上即可轻松实现 https 访问。如下图：
 
-![minio-https](https://zhang.beer:9999/ache/beer/blog/minio-https.png)
+![minio-https](https://zhang.beer/static/images/minio-https.png)
 
-![minio-https-2](https://zhang.beer:9999/ache/beer/blog/minio-https-2.png)
+![minio-https-2](https://zhang.beer/static/images/minio-https-2.png)

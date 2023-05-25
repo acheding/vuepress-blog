@@ -69,7 +69,7 @@ vim /etc/nginx/sites-enabled/default || vi /etc/nginx/sites-enabled/default
 
 进入 nginx 配置文件，点击 <kbd>a</kbd> 或者 <kbd>i</kbd> 进入编辑，修改 server_name 为 IP 或域名，修改 root 为 dist 文件的路径。因为 Vue 为单页面应用，所以刷新之后会报 404，就需要设置重定向一下：try_files $uri $uri/ /index.html 。编辑完后点击 <kbd>esc</kbd>，然后 <kbd>:</kbd><kbd>w</kbd><kbd>q</kbd> 保存退出。
 
-![website-1](https://zhang.beer:9999/ache/beer/blog/website-1.png)
+![website-1](https://zhang.beer/static/images/website-1.png)
 
 记得检查一下这个端口号有没有添加到服务器防火墙的规则里。
 
@@ -81,7 +81,7 @@ find / -name error.log
 
 寻找 nginx 的报错日志，查看日志，如果出现 “Permission denied” 说明 nginx 权限不够，vim /etc/nginx/nginx.conf 将第一行的 user www-data 修改为 user root 即可。
 
-![website-2](https://zhang.beer:9999/ache/beer/blog/website-2.png)
+![website-2](https://zhang.beer/static/images/website-2.png)
 
 ## 后端
 
@@ -91,8 +91,8 @@ find / -name error.log
 
 2.新建 demo 项目，依赖勾选 Spring Web，在 com.example.demo 下创建 controller 文件夹，添加 Java Class，在类外边写上 @RestController 注解，表明它是一个返回字符串的控制器，接着用 @RequestMapping 注解写一个 /hello 请求，运行并打开 localhost:8080/hello 验证一下。
 
-![website-3](https://zhang.beer:9999/ache/beer/blog/website-3.png)
-![website-4](https://zhang.beer:9999/ache/beer/blog/website-4.png)
+![website-3](https://zhang.beer/static/images/website-3.png)
+![website-4](https://zhang.beer/static/images/website-4.png)
 
 3.使用 mvn clean package 命令清理、打包成 jar 文件，在生成的 target 文件夹下。
 
@@ -160,4 +160,4 @@ export default defineConfig({
 });
 ```
 
-![website-5](https://zhang.beer:9999/ache/beer/blog/website-5.png)
+![website-5](https://zhang.beer/static/images/website-5.png)

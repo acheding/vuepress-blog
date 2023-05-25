@@ -1,6 +1,6 @@
 # 吸顶效果和锚点定位
 
-![anchor](https://zhang.beer:9999/ache/beer/blog/anchor.gif)
+![anchor](https://zhang.beer/static/images/anchor.gif)
 
 这里主要通过监听滚轮使鼠标滑动到某些特定地方，增加 fix-nav 类固定悬浮栏实现吸顶，增加 active 类实现底部横线动画切换。有了滚轮监听，那么锚点定位也并非难事了，点击悬浮栏向函数传进对应内容的 id ，然后计算当前鼠标位置与目标位置之间的距离，给鼠标位置不断增加 1/4 的这个距离，直到距离小于 1 停止，期间给予一定的延时，就会出现动画效果了。关于锚点定位这里写了另外一种简单的实现方式，原生 JS 的 API —— scrollIntoView() 方法或 window.scrollTo()方法（后者可以滚动到指定位置），可以让元素进入视区，通过触发滚动容器的定位实现，其中 behavior 为过渡动画，可以是 “auto”，”instant” 或 “smooth”。默认为 “auto”，block 为最终停止的地方，可以是 “center”，”start” 或 “nearest”。默认为 “center” 。鼠标滑动滚轮到顶部，导航栏自动吸顶，保持不动，滑动到相应内容，导航栏自动切换，点击导航栏，自动平滑到指定内容。
 

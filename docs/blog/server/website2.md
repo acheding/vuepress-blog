@@ -29,7 +29,7 @@ cd /etc/mysql
 sudo vim debian.cnf
 ```
 
-![website2-1](https://zhang.beer:9999/ache/beer/blog/website2-1.png)
+![website2-1](https://zhang.beer/static/images/website2-1.png)
 
 3.登录
 
@@ -63,7 +63,7 @@ flush privileges;
 
 可以将这个文件拆成三个，一个是选择启动文件的 application.yml，一个是开发环境 application-dev.yml，一个是生产环境 application-prod.yml，生产环境的 url 将 localhost 替换成远程数据库地址，详细如下：
 
-![website2-2](https://zhang.beer:9999/ache/beer/blog/website2-2.png)
+![website2-2](https://zhang.beer/static/images/website2-2.png)
 
 ```
 spring:
@@ -95,15 +95,15 @@ logging:
 
 mapper
 
-![website2-3](https://zhang.beer:9999/ache/beer/blog/website2-3.png)
+![website2-3](https://zhang.beer/static/images/website2-3.png)
 
 数据库：
 
-![website2-4](https://zhang.beer:9999/ache/beer/blog/website2-4.png)
+![website2-4](https://zhang.beer/static/images/website2-4.png)
 
 测试一下：
 
-![website2-5](https://zhang.beer:9999/ache/beer/blog/website2-5.png)
+![website2-5](https://zhang.beer/static/images/website2-5.png)
 
 常规打包
 
@@ -176,4 +176,4 @@ const highLight = (allText, keyword) => {
 
 ## 成功辽
 
-![website2-6](https://zhang.beer:9999/ache/beer/blog/website2-6.png)
+![website2-6](https://zhang.beer/static/images/website2-6.png)

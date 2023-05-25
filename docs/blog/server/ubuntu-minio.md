@@ -49,21 +49,21 @@ docker run -p 9000:9000 -p 9090:9090 \
 
 ### 4.查看容器和镜像
 
-![ubuntu-minio-1](https://zhang.beer:9999/ache/beer/blog/ubuntu-minio-1.png)
+![ubuntu-minio-1](https://zhang.beer/static/images/ubuntu-minio-1.png)
 
 ### 5.访问客户端
 
 部署完成之后可以在对应的 IP 端口直接打开 minio 客户端。通过上面设置的账号密码登录。
 
-![ubuntu-minio-2](https://zhang.beer:9999/ache/beer/blog/ubuntu-minio-2.png)
+![ubuntu-minio-2](https://zhang.beer/static/images/ubuntu-minio-2.png)
 
 ### 6.创建存储桶
 
-![ubuntu-minio-3](https://zhang.beer:9999/ache/beer/blog/ubuntu-minio-3.png)
+![ubuntu-minio-3](https://zhang.beer/static/images/ubuntu-minio-3.png)
 
 ### 7.赋予桶权限
 
-![ubuntu-minio-4](https://zhang.beer:9999/ache/beer/blog/ubuntu-minio-4.png)
+![ubuntu-minio-4](https://zhang.beer/static/images/ubuntu-minio-4.png)
 
 其中 private 是私有读私有写，public 是公有读公有写，custom 为公有读私有写。
 
@@ -73,12 +73,12 @@ docker run -p 9000:9000 -p 9090:9090 \
 
 由于我们是管理员账户，所以可以创建其他普通用户和自己一同共享文件存储系统。
 
-![ubuntu-minio-5](https://zhang.beer:9999/ache/beer/blog/ubuntu-minio-5.png)
+![ubuntu-minio-5](https://zhang.beer/static/images/ubuntu-minio-5.png)
 
 可以看到，在创建的时候我们可以为其赋予规则，有默认的几种规则，当然也可以添加自定义规则。
 
 ### 9.添加规则
 
-![ubuntu-minio-6](https://zhang.beer:9999/ache/beer/blog/ubuntu-minio-6.png)
+![ubuntu-minio-6](https://zhang.beer/static/images/ubuntu-minio-6.png)
 
 比如这里，我们新建了一个规则，这个规则允许该用户在名为 test 的存储桶下对该桶里的文件进行增删改查，但是也仅限于此桶，他看不到我的其他桶，且无法创建新的桶。

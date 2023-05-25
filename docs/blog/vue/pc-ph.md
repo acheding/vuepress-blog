@@ -4,11 +4,11 @@
 
 1.PC 端
 
-![pc-ph](https://zhang.beer:9999/ache/beer/blog/pc-ph.png)
+![pc-ph](https://zhang.beer/static/images/pc-ph.png)
 
 2.移动端
 
-![pc-ph-2](https://zhang.beer:9999/ache/beer/blog/pc-ph-2.png)
+![pc-ph-2](https://zhang.beer/static/images/pc-ph-2.png)
 
 ## 实现
 

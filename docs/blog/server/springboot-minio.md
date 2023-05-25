@@ -14,7 +14,7 @@
 
 ## 编写工具类
 
-![springboot-minio](https://zhang.beer:9999/ache/beer/blog/springboot-minio.png)
+![springboot-minio](https://zhang.beer/static/images/springboot-minio.png)
 
 ### 1.定义 minio 客户端和常量
 
