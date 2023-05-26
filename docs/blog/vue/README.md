@@ -18,15 +18,29 @@ Vue (发音为 /vjuː/，类似 view) 是一款用于构建用户界面的 JavaS
 
 ### 双向绑定
 
-Vue2 的双向数据绑定是利⽤ ES5 的⼀个 API ，Object.defineProperty()对数据进⾏劫持 结合 发布订阅模式的⽅式来实现的。'
+Vue2 的双向数据绑定是利⽤ ES5 的⼀个 API ，Object.defineProperty()对数据进⾏劫持，结合发布订阅模式的⽅式来实现的。
 
-Vue3 中使⽤了 ES6 的 ProxyAPI 对数据代理，通过 reactive() 函数给每⼀个对象都包⼀层 Proxy，通过 Proxy 监听属性的变化，从⽽ 实现对数据的监控。
+Vue3 中使⽤了 ES6 的 ProxyAPI 对数据代理，通过 reactive() 函数给每⼀个对象都包⼀层 Proxy，通过 Proxy 监听属性的变化，从⽽实现对数据的监控。
 
-这⾥是相⽐于 vue2 版本，使⽤ proxy 的优势如下：
+## 生命周期
 
-1.defineProperty 只能监听某个属性，不能对全对象监听 可以省去 for in、闭包等内容来提升效率（直接绑定整个对象即可）
+| Vue2          | Vue3            |
+| :------------ | :-------------- |
+| beforeCreate  | setup()         |
+| created       | setup()         |
+| beforeMount   | onBeforeMount   |
+| mounted       | onMounted       |
+| beforeUpdate  | onBeforeUpdate  |
+| updated       | onUpdated       |
+| beforeDestroy | onBeforeUnmount |
+| destroyed     | onUnmounted     |
+| errorCaptured | onErrorCaptured |
 
-2.可以监听数组，不⽤再去单独的对数组做特异性操作,通过 Proxy 可以直接拦截所有对象类型数据的操作，完美⽀持对数组的监听。
+除此之外，Vue3 还新增了 onActivated、onDeactivated 等新的生命周期钩子函数。
+
+## 选项式 API（Options API）与组合式 API（Composition API）
+
+## Vue3 支持碎片（Fragments）
 
 ::: warning TODO
 更新中

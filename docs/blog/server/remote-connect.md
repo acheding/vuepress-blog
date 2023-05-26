@@ -36,4 +36,4 @@ bind-address 是 MySQL 用来监听某个单独的 TCP/IP 连接，只能绑定�
 
 ### 参考文章：
 
-<https://blog.csdn.net/alwaysbefine/article/details/116332945>
+[MySQL 远程连接报错 2003-cant connection to mysql server on ‘IP’（10061 unknown error）](https://blog.csdn.net/alwaysbefine/article/details/116332945)

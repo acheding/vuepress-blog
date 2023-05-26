@@ -6,7 +6,7 @@
 
 ## 直接安装
 
-最基础的一种单机安装，这里不做过多阐述，可以参考这篇博客：<https://blog.csdn.net/houor/article/details/126686566>
+最基础的一种单机安装，这里不做过多阐述，可以参考这篇博客：[Ubuntu 22.04 安装 MinIO](https://blog.csdn.net/houor/article/details/126686566)
 
 ## docker 安装
 

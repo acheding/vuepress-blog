@@ -76,7 +76,7 @@ server {
 
 ## 部分依赖不打包，引入 cdn
 
-在没有使用 cdn 加速之前，例如 element-plus、@element-plus/icons-vue、vue、vux、axios、vue-router、echarts 等依赖都会打包，导致 vendor.js 体积很大，影响首屏加载速度。
+在没有使用 cdn 加速之前，例如 element-plus、vue、pinia、axios、vue-router、echarts 等依赖都会打包，导致 vendor.js 体积很大，影响首屏加载速度。
 
 这个优化则是选择性地将这些第三方依赖不加入打包，部署到线上之后直接引用线上 cdn 地址。
 
@@ -108,8 +108,7 @@ export default defineConfig({
       external: [
         "vue",
         "element-plus",
-        "@element-plus/icons-vue",
-        "vuex",
+        "pinia",
         "axios",
         "vue-router",
         "echarts",
@@ -119,8 +118,7 @@ export default defineConfig({
         externalGlobals({
           vue: "Vue",
           "element-plus": "ElementPlus",
-          "@element-plus/icons-vue": "ElementPlusIconsVue",
-          vuex: "Vuex",
+          pinia: "Pinia",
           axios: "axios",
           "vue-router": "VueRouter",
           echarts: "echarts",
@@ -156,8 +154,7 @@ export default defineConfig({
       href="https://unpkg.com/element-plus@2.1.8/dist/index.css"
     />
     <script src="https://unpkg.com/element-plus@2.1.8/dist/index.full.js"></script>
-    <script src="https://unpkg.com/@element-plus/icons-vue@1.1.4/dist/index.iife.min.js"></script>
-    <script src="https://unpkg.com/vuex@4.0.2/dist/vuex.global.js"></script>
+    <script src="https://unpkg.com/pinia@2.0.36/dist/pinia.iife.js"></script>
     <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue-router@4.1.6/dist/vue-router.global.js"></script>
     <script src="https://unpkg.com/echarts@5.3.0/dist/echarts.min.js"></script>
