@@ -89,6 +89,7 @@ module.exports = {
             "springboot-cos",
             "springboot-minio",
             "remote-connect",
+            "winscp-script",
           ],
         },
       ],
