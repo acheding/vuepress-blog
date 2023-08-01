@@ -5,13 +5,13 @@
 ## 下载证书
 
 - cloud.tencent.com_bundle.crt 证书文件
-- cloud.tencent.com_bundle.pem 证书文件（可忽略该文件）
+- cloud.tencent.com_bundle.pem 证书文件
 - cloud.tencent.com.key 私钥文件
 - cloud.tencent.com.csr CSR 文件
 
 ## 上传证书到服务器
 
-通过 WinSCP 将已获取到的 cloud.tencent.com_bundle.crt 证书文件和 cloud.tencent.com.key 私钥文件从本地目录拷贝到 Nginx 服务器的 /etc/nginx 目录（此处为 Nginx 默认安装目录，请根据实际情况操作）下。
+通过 WinSCP 将已获取到的 cloud.tencent.com_bundle.crt 或 cloud.tencent.com_bundle.pem 证书文件和 cloud.tencent.com.key 私钥文件从本地目录拷贝到 Nginx 服务器的 /etc/nginx 目录（此处为 Nginx 默认安装目录，请根据实际情况操作）下。
 
 ![ssl-1](https://zhang.beer/static/images/ssl-1.png)
 
