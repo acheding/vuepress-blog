@@ -31,6 +31,7 @@ module.exports = {
           { text: "VUE", link: "/blog/vue/" },
           { text: "微前端", link: "/blog/micro/" },
           { text: "服务器", link: "/blog/server/" },
+          { text: "小程序", link: "/blog/mini/" },
         ],
       },
       { text: "GitHub", link: "https://github.com/fadeache" },
@@ -91,6 +92,14 @@ module.exports = {
             "remote-connect",
             "winscp-script",
           ],
+        },
+      ],
+      "/blog/mini/": [
+        {
+          title: "小程序",
+          collapsable: false,
+          sidebarDepth: 2,
+          children: ["", "vxmp"],
         },
       ],
     },
