@@ -99,7 +99,7 @@ module.exports = {
           title: "小程序",
           collapsable: false,
           sidebarDepth: 2,
-          children: ["", "vxmp"],
+          children: ["", "vxmp", "vxmp2"],
         },
       ],
     },
