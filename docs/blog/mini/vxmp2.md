@@ -432,6 +432,36 @@ async showUser(record, index) {
 
 :::
 
+#### 7.评价
+
+首先在 pages.json 里面引入「评价发布组件」。
+
+```json
+"plugins": {
+	"wxacommentplugin": {
+		"version": "latest",
+		"provider": "wx82e6ae1175f264fa"
+	}
+}
+```
+
+如果还未添加插件，则在开发者工具 Console 里点击「添加插件」。
+然后就可以在页面的 js 文件里面调用组件接口。
+
+```js
+var plugin = requirePlugin("wxacommentplugin");
+plugin.openComment({
+  success: (res) => {
+    console.log("plugin.openComment success", res);
+  },
+  fail: (res) => {
+    console.log("plugin.openComment fail", res);
+  },
+});
+```
+
+可在[微信小程序官网](https://mp.weixin.qq.com/)的功能-体验评价中查看评价。
+
 ### 后端
 
 #### 1.建表
