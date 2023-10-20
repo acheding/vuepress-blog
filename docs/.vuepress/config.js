@@ -97,7 +97,7 @@ module.exports = {
       "/blog/mini/": [
         {
           title: "小程序",
-          collapsable: false,
+          collapsable: false, // 左上角大标题“小程序”是否可展开
           sidebarDepth: 2,
           children: ["", "vxmp", "vxmp2"],
         },
