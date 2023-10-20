@@ -62,6 +62,7 @@ module.exports = {
             "directive-outside",
             "load-optimization",
             "pdf-export",
+            "gogocode",
           ],
         },
       ],
