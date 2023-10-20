@@ -14,27 +14,27 @@
 ## 注册
 
 1.进入公众平台，点击右上角“立即注册”。
-![vxmp-1](https://zhang.beer/static/images/vxmp-1.png)
+![vxmp-register-1](https://zhang.beer/static/images/vxmp-register-1.png)
 
 2.点击选择小程序。
-![vxmp-2](https://zhang.beer/static/images/vxmp-2.png)
+![vxmp-register-2](https://zhang.beer/static/images/vxmp-register-2.png)
 
 3.点击“前往注册”。
-![vxmp-3](https://zhang.beer/static/images/vxmp-3.png)
+![vxmp-register-3](https://zhang.beer/static/images/vxmp-register-3.png)
 
 4.按照要求填写账号信息，填写完成后，点击“注册”。
-![vxmp-4](https://zhang.beer/static/images/vxmp-4.png)
+![vxmp-register-4](https://zhang.beer/static/images/vxmp-register-4.png)
 
-5.提交注册信息后，页面会跳转到“激活邮箱”，登录自己的邮箱去激活。![vxmp-5](https://zhang.beer/static/images/vxmp-5.png)
+5.提交注册信息后，页面会跳转到“激活邮箱”，登录自己的邮箱去激活。![vxmp-register-5](https://zhang.beer/static/images/vxmp-register-5.png)
 登录邮箱后，打开邮件点击激活链接，它会跳转进入小程序账号“信息登记”页面。
-![vxmp-6](https://zhang.beer/static/images/vxmp-6.png)
-![vxmp-7](https://zhang.beer/static/images/vxmp-7.png)
+![vxmp-register-6](https://zhang.beer/static/images/vxmp-register-6.png)
+![vxmp-register-7](https://zhang.beer/static/images/vxmp-register-7.png)
 
 6.以下操作以“个人”主体类型为例：选择“个人”填写主体信息登记，按照上页面提示如实填写，必须实名填写。填写信息后点击“继续”，会出现二次确认的提示，点击确定后，提示提交成功，进入小程序。
-![vxmp-8](https://zhang.beer/static/images/vxmp-1.png)
+![vxmp-register-8](https://zhang.beer/static/images/vxmp-register-1.png)
 
 7.至此说明小程序已经注册成功，页面会跳转到小程序账号的页面。填写小程序信息，补充小程序类目，填写完整才能进入设置去获取 AppID(小程序 ID)、AppSecret(小程序密钥)
-![vxmp-9](https://zhang.beer/static/images/vxmp-9.png)
+![vxmp-register-9](https://zhang.beer/static/images/vxmp-register-9.png)
 
 ## 开发
 

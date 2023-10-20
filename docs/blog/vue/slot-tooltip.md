@@ -5,7 +5,7 @@ vue3 中，使用插槽的方式相比 vue2 有所变化。以前 vue2 使用的
 更换表格背景色需要用到 el-table 的 cell-class-name 参数，它是单元格 className 的回调方法，可以自由选择行和列，为某一行或列添加一个带有特殊样式的 class 类。
 
 效果：
-![slot](https://zhang.beer/static/images/slot.png)
+![slot-tooltip](https://zhang.beer/static/images/slot-tooltip.png)
 代码：
 
 ```vue

@@ -60,31 +60,31 @@
 #### 1.新建项目
 
 在 HBuilderX 新建项目。
-![vxmp2-1](https://zhang.beer/static/images/vxmp2-1.png)
+![vxmp-develop-1](https://zhang.beer/static/images/vxmp-develop-1.png)
 
 #### 2.配置开发工具路径
 
 在 HBuilderX 配置微信开发者工具的安装路径：工具-设置-运行配置-小程序运行配置-微信开发者工具路径。
-![vxmp2-2](https://zhang.beer/static/images/vxmp2-2.png)
+![vxmp-develop-2](https://zhang.beer/static/images/vxmp-develop-2.png)
 
 #### 3.开启端口
 
 在微信开发者工具，开启端口：设置-安全设置-服务端口。
-![vxmp2-3](https://zhang.beer/static/images/vxmp2-3.png)
+![vxmp-develop-3](https://zhang.beer/static/images/vxmp-develop-3.png)
 
 #### 4.运行项目
 
 在 HBuilderX 运行项目：运行-运行到小程序模拟器-微信开发者工具。
-![vxmp2-4](https://zhang.beer/static/images/vxmp2-4.png)
+![vxmp-develop-4](https://zhang.beer/static/images/vxmp-develop-4.png)
 
 这时会根据第 2 步配置的路径自动打开微信开发者工具。
-![vxmp2-5](https://zhang.beer/static/images/vxmp2-5.png)
+![vxmp-develop-5](https://zhang.beer/static/images/vxmp-develop-5.png)
 
 至此，前端基础工作准备完成。如果您想写的小程序只有前端静态页面而无需后端服务，那么可以不用继续往下看了，只需要：
 
 - 编写静态页面的代码
 - 在微信开发者工具左上角点击登录，点击右上角详情-基本信息-AppId，点击修改为您注册的小程序 ID，点击上传。
-  ![vxmp2-8](https://zhang.beer/static/images/vxmp2-8.png)
+  ![vxmp-develop-8](https://zhang.beer/static/images/vxmp-develop-8.png)
   - 其中 AppID 获取方式为：进入[微信小程序官网](https://mp.weixin.qq.com/)，找到开发-开发管理-开发设置，在“开发者 ID”下即可获取 AppID(小程序 ID)
 - 找到管理-版本管理-开发版本，点击提交审核，待审核通过后将审核版本发布，即可完成小程序开发和发布。
 
@@ -108,8 +108,8 @@
 
 ### 前端
 
-<img  src="https://zhang.beer/static/images/vxmp2-1.gif" alt="vxmp2-1" width="300" height="600">
-<img src="https://zhang.beer/static/images/vxmp2-12.png" alt="vxmp2-2" width="300" height="600">
+<img  src="https://zhang.beer/static/images/vxmp-develop-1.gif" alt="vxmp-develop-1" width="300" height="600">
+<img src="https://zhang.beer/static/images/vxmp-develop-12.png" alt="vxmp-develop-2" width="300" height="600">
 
 下面粘贴部分关键代码。
 
@@ -468,7 +468,7 @@ plugin.openComment({
 
 使用了两张表，一张用户表 mahjong，一张对局表 room。
 
-![vxmp2-6](https://zhang.beer/static/images/vxmp2-6.png)
+![vxmp-develop-6](https://zhang.beer/static/images/vxmp-develop-6.png)
 
     id：用户id
     openid：用户的 openid
@@ -477,7 +477,7 @@ plugin.openComment({
     roomid：用户当前所在房间
     updateTime: 用户加入房间时间
 
-![vxmp2-7](https://zhang.beer/static/images/vxmp2-7.png)
+![vxmp-develop-7](https://zhang.beer/static/images/vxmp-develop-7.png)
 
     id：对局id
     roomid：房间id
