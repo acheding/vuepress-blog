@@ -109,7 +109,7 @@
 ### 前端
 
 <img  src="https://zhang.beer/static/images/vxmp2-1.gif" alt="vxmp2-1" width="300" height="600">
-<img src="https://zhang.beer/static/images/vxmp2-2.gif" alt="vxmp2-2" width="300" height="600">
+<img src="https://zhang.beer/static/images/vxmp2-12.png" alt="vxmp2-2" width="300" height="600">
 
 下面粘贴部分关键代码。
 
