@@ -31,7 +31,7 @@ module.exports = {
           { text: "VUE", link: "/blog/vue/" },
           { text: "微前端", link: "/blog/micro/" },
           { text: "服务器", link: "/blog/server/" },
-          { text: "小程序", link: "/blog/mini/" },
+          { text: "小程序", link: "/blog/vxmp/" },
         ],
       },
       { text: "GitHub", link: "https://github.com/fadeache" },
@@ -94,7 +94,7 @@ module.exports = {
           ],
         },
       ],
-      "/blog/mini/": [
+      "/blog/vxmp/": [
         {
           title: "小程序",
           collapsable: false, // 左上角大标题“小程序”是否可展开
