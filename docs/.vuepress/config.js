@@ -63,6 +63,7 @@ module.exports = {
             "load-optimization",
             "pdf-export",
             "gogocode",
+            "vuepress",
           ],
         },
       ],
