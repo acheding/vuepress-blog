@@ -64,6 +64,7 @@ module.exports = {
             "pdf-export",
             "gogocode",
             "vuepress",
+            "markdown",
           ],
         },
       ],
