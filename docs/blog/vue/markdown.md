@@ -249,7 +249,7 @@ app.mount("#app");
 <kbd>Ctrl</kbd>+<kbd>C</kbd> AND <kbd>Ctrl</kbd>+<kbd>V</kbd>
 
 ```md
-<kbd>Ctrl</kbd>
+<kbd>Ctrl</kbd>+<kbd>C</kbd> AND <kbd>Ctrl</kbd>+<kbd>V</kbd>
 ```
 
 ## [VuePress 关于 MarkDown 的拓展](https://vuepress.vuejs.org/zh/guide/markdown.html)
