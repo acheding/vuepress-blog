@@ -10,6 +10,8 @@
 
 [官网](https://gogocode.io/zh)上关于 Vue2 升级 Vue3 大抵有两种方案。第一种介绍了一套 Vue2 升级工具，利用这套工具能够快速地把 Vue2 代码升级到 Vue3。但是过程较为繁琐，出现错误的可能性较大，网上也没有什么详细介绍和成功案例，最主要是我没有成功的运行。第二种则就是普通的转换，利用自己编写的转换规则按部就班转换。所以我选择了第二种，灵活性较大，可以根据各个项目的特点按需要编写转换规则，然后规规矩矩逐个文件代码转换，转换完成之后对比有无错误语法，再运行测试是否有缺陷，比较直观。
 
+![gogocode](https://zhang.beer/static/images/gogocode.gif)
+
 ## 安装插件
 
 在 VSCode 拓展中搜索 GoGoCode 并安装即可。
@@ -146,7 +148,7 @@ ast.replace("function log($$$0) { $$$1 }", "function record($$$0) { $$$1 }");
 
 现在，我们就可以开始编写规则了。目的是将 vue2 中的语法规则升级为 Vue3 的语法规则，同时将 ui 组件库 element-ui 升级为 element-plus，主要分为以下几部分。
 
-1.插槽。Vue3 中需要在外面包裹上一层 tempplate，写法也由内层的 slot="xxx" 变为外层的 #xxx。
+1.插槽。Vue3 中需要在外面包裹上一层 template，写法也由内层的 slot="xxx" 变为外层的 #xxx。
 
 ```js
 template.replace(
@@ -254,4 +256,6 @@ script
 
 ### 成果展示
 
-![gogocode](https://zhang.beer/static/images/gogocode.gif)
+![gogocode-3](https://zhang.beer/static/images/gogocode-3.png)
+
+![gogocode-1](https://zhang.beer/static/images/gogocode-1.png)
