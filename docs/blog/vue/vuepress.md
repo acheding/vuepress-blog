@@ -112,7 +112,7 @@ module.exports = {
           { text: "小程序", link: "/blog/vxmp/" },
         ],
       },
-      { text: "GitHub", link: "https://github.com/fadeache" },
+      { text: "GitHub", link: "https://github.com/acheding" },
     ],
     sidebar: {
       "/blog/css/": [

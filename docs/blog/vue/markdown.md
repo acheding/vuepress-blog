@@ -113,18 +113,18 @@ _**粗斜体**_
 
 ## 链接、图片
 
-<https://github.com/fadeache>
+<https://github.com/acheding>
 
-[GitHub](https://github.com/fadeache)
+[GitHub](https://github.com/acheding)
 
 ![图片](https://zhang.beer/static/images/MahjongScorer.jpg)
 
 <div align="center"><img alt="图片" src="https://zhang.beer/static/images/MahjongScorer.jpg" width="430" height="430" ></div>
 
 ```md
-<https://github.com/fadeache>
+<https://github.com/acheding>
 
-[GitHub](https://github.com/fadeache)
+[GitHub](https://github.com/acheding)
 
 ![图片](https://zhang.beer/static/images/MahjongScorer.jpg)
 
