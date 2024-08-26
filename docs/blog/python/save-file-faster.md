@@ -145,13 +145,13 @@ def save_file(self, list):
 
 **面临问题**：对于中国网网站上搜索到的内容，来自于其一级域名下众多二级域名官网的文章，大到央视新闻、新华社，小到六盘水日报等，每篇文章的网站不同、结构不同，一个爬虫程序通常只是为了某个网站而诞生，对于错综复杂的中国网上的文章有点棘手。
 **解决方法**：遍历每篇文章 DOM 上所有节点，累加每个标签的文本长度，找到文本内容最多的那个标签的父节点，然后遍历该父节点下所有子节点的文本。
-![](../api/sys-storage/download_image?f8s=354e0d85018c5ee31d784e3a09b58d21)
+![](https://zhang.beer/static/images/save-file-faster-1.png)
 
 **面临问题**：虽说这样速度提升了不少，但是还是不够快，主要在于网站中杂余信息太多，导致 PDF 太大。
 **解决方法**：前面提到 pdfkit 可以通过网址转 PDF，即将网站整份保存 PDF，其效果和 Selenium 类似，另外一种方式就是通过字符串转 PDF，将 Beautiful Soup 的 prettify()方法得到的标准 HTML 字符串按需截取，保留正文部分，然后转成 PDF 保存，这样不仅内容精简干练，而且也因为文件体积小加快了程序的执行，二者对比图如下。
-![](../api/sys-storage/download_image?f8s=b5bdb6ce9ca872412f184ea11c6866d5)
-![](../api/sys-storage/download_image?f8s=3b450e72f310af4e365fa7e31a246c4e)
-![](../api/sys-storage/download_image?f8s=55fd575df57a3f450e839d966e8fc2d9)
+![](https://zhang.beer/static/images/save-file-faster-2.png)
+![](https://zhang.beer/static/images/save-file-faster-3.png)
+![](https://zhang.beer/static/images/save-file-faster-4.png)
 
 ```python
 def url_to_text_and_pdf(self, url, path):
