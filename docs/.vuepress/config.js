@@ -27,8 +27,8 @@ module.exports = {
       {
         text: "Blog",
         items: [
-          { text: "Css", link: "/blog/css/" },
-          { text: "Vue", link: "/blog/vue/" },
+          { text: "CSS", link: "/blog/css/" },
+          { text: "VUE", link: "/blog/vue/" },
           { text: "微前端", link: "/blog/micro/" },
           { text: "服务器", link: "/blog/server/" },
           { text: "小程序", link: "/blog/vxmp/" },
@@ -40,7 +40,7 @@ module.exports = {
     sidebar: {
       "/blog/css/": [
         {
-          title: "Css",
+          title: "CSS",
           collapsable: false,
           // collapsed: true,
           sidebarDepth: 2,
@@ -49,7 +49,7 @@ module.exports = {
       ],
       "/blog/vue/": [
         {
-          title: "Vue",
+          title: "VUE",
           collapsable: false,
           sidebarDepth: 2,
           children: [
