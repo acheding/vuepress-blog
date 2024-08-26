@@ -2,7 +2,7 @@
 
 最近的任务之一是爬取[中国网](http://query.china.com.cn/query/cn.html?kw=%E6%8A%BD%E6%B0%B4%E8%93%84%E8%83%BD# "中国网")的行业训练语料，搜索众多关键词下的文章，并将每篇文章的内容保存一份 TXT 和 PDF 。
 
-### 一、Selenium
+## 一、Selenium
 
 传统的写法，大抵是用 Selenium 去访问每篇文章的网址，获取正文内容保存 TXT，调用浏览器打印机将网页另存为 PDF。起先我也如此，然而对于仅仅“能源”关键词就有 12w 条数据的网站来说，在频繁打开网页和浏览器打印机的作用下，速度始终太慢，而且经过尝试，唯一的提速手段打开无头模式后台执行也因为会导致无法正常保存 PDF 而被舍弃。
 
@@ -40,7 +40,7 @@ self.driver = webdriver.Chrome(options=self.options)
 self.driver.maximize_window()
 ```
 
-### 二、requests+Beautiful Soup+pdfkit
+## 二、requests+Beautiful Soup+pdfkit
 
 本着“机器不用看页面”的思想，想到了第 2 种方案：通过接口调用得到数据，解析网址获取正文。那 PDF 该如何保存呢？就在这时，一个名为 pdfkit 的库映入眼帘，可以通过网址、文件、字符串等直接生成 PDF，真是恰好一举两得。
 
@@ -49,7 +49,7 @@ self.driver.maximize_window()
 
 **整体思想**：循环遍历关键词，将每个关键词代入到 URL 链接中，遍历每页返回的 1000 条数据，遍历完成后 startPage 自增 1，如果返回的数据小于 1000 条，则说明是最后一页，这时进入下一个关键词，startPage 重置为 1，如果关键词遍历完成，则退出程序。过程中捕获异常，打印和保存错误信息，异常退出时重启，并从上次错误的下一条开始。
 
-#### 1.全局变量
+### 1.全局变量
 
 ```python
 over = False # 退出程序的标志
@@ -60,7 +60,7 @@ pageCount = 1 # 总页数，打印信息用
 recordCount = 0 # 总数居条数，打印信息用
 ```
 
-#### 2.初始化
+### 2.初始化
 
 计划为每个关键词新建一个文件夹，所以初始化了 first_path 和 second_path 两个变量。
 pdfkit 依赖 wkhtmltopdf 插件，需要提供插件的地址，当然也可以写进系统环境变量。
@@ -77,7 +77,7 @@ def __init__(self):
 	self.config = pdfkit.configuration(wkhtmltopdf=self.path_wk)
 ```
 
-#### 3.核心主函数
+### 3.核心主函数
 
 ```python
 def get_html(self):
@@ -115,7 +115,7 @@ def get_html(self):
         over = True
 ```
 
-#### 4.保存文件主函数
+### 4.保存文件主函数
 
 ```python
 def save_file(self, list):
@@ -141,13 +141,15 @@ def save_file(self, list):
     news_index = 0
 ```
 
-#### 5.保存 TXT 和 PDF
+### 5.保存 TXT 和 PDF
 
 **面临问题**：对于中国网网站上搜索到的内容，来自于其一级域名下众多二级域名官网的文章，大到央视新闻、新华社，小到六盘水日报等，每篇文章的网站不同、结构不同，一个爬虫程序通常只是为了某个网站而诞生，对于错综复杂的中国网上的文章有点棘手。
+
 **解决方法**：遍历每篇文章 DOM 上所有节点，累加每个标签的文本长度，找到文本内容最多的那个标签的父节点，然后遍历该父节点下所有子节点的文本。
 ![](https://zhang.beer/static/images/save-file-faster-1.png)
 
 **面临问题**：虽说这样速度提升了不少，但是还是不够快，主要在于网站中杂余信息太多，导致 PDF 太大。
+
 **解决方法**：前面提到 pdfkit 可以通过网址转 PDF，即将网站整份保存 PDF，其效果和 Selenium 类似，另外一种方式就是通过字符串转 PDF，将 Beautiful Soup 的 prettify()方法得到的标准 HTML 字符串按需截取，保留正文部分，然后转成 PDF 保存，这样不仅内容精简干练，而且也因为文件体积小加快了程序的执行，二者对比图如下。
 ![](https://zhang.beer/static/images/save-file-faster-2.png)
 ![](https://zhang.beer/static/images/save-file-faster-3.png)
@@ -198,7 +200,7 @@ def url_to_text_and_pdf(self, url, path):
         raise Exception(f"保存PDF异常: {e}")
 ```
 
-##### 1.获取最长文本的标签的父节点
+#### 1.获取最长文本的标签的父节点
 
 ```python
 def get_max_tag_parent(self, soup):
@@ -216,7 +218,7 @@ def get_max_tag_parent(self, soup):
     return max_tag.parent
 ```
 
-##### 2.获取正文文本
+#### 2.获取正文文本
 
 ```python
 def get_text(self, tag):
