@@ -27,11 +27,12 @@ module.exports = {
       {
         text: "Blog",
         items: [
-          { text: "CSS", link: "/blog/css/" },
-          { text: "VUE", link: "/blog/vue/" },
+          { text: "Css", link: "/blog/css/" },
+          { text: "Vue", link: "/blog/vue/" },
           { text: "微前端", link: "/blog/micro/" },
           { text: "服务器", link: "/blog/server/" },
           { text: "小程序", link: "/blog/vxmp/" },
+          { text: "Python", link: "/blog/python/" },
         ],
       },
       { text: "GitHub", link: "https://github.com/acheding" },
@@ -39,7 +40,7 @@ module.exports = {
     sidebar: {
       "/blog/css/": [
         {
-          title: "CSS",
+          title: "Css",
           collapsable: false,
           // collapsed: true,
           sidebarDepth: 2,
@@ -48,7 +49,7 @@ module.exports = {
       ],
       "/blog/vue/": [
         {
-          title: "VUE",
+          title: "Vue",
           collapsable: false,
           sidebarDepth: 2,
           children: [
@@ -103,6 +104,14 @@ module.exports = {
           collapsable: false, // 左上角大标题“小程序”是否可展开
           sidebarDepth: 2,
           children: ["", "vxmp-register", "vxmp-develop"],
+        },
+      ],
+      "/blog/python/": [
+        {
+          title: "Python",
+          collapsable: false,
+          sidebarDepth: 2,
+          children: ["", "save-file-faster.md"],
         },
       ],
     },
