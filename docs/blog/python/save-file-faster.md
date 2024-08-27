@@ -42,10 +42,10 @@ self.driver.maximize_window()
 
 本着“机器不用看页面”的思想，想到了第 2 种方案：通过接口调用得到数据，解析网址获取正文。那 PDF 该如何保存呢？就在这时，一个名为 pdfkit 的库映入眼帘，可以通过网址、文件、字符串等直接生成 PDF，真是恰好一举两得。
 
-中国网链接前缀：http://query.china.com.cn/news/queryFn?pagetag=1&noFields=channel&nokws=2&fetch=title%2Curl&pageSize=1000&index=cn%2Cmarket_index
+中国网链接前缀：[http://query.china.com.cn/news/queryFn?pagetag=1&noFields=channel&nokws=2&fetch=title%2Curl&pageSize=1000&index=cn%2Cmarket_index](http://query.china.com.cn/news/queryFn?pagetag=1&noFields=channel&nokws=2&fetch=title%2Curl&pageSize=1000&index=cn%2Cmarket_index "http://query.china.com.cn/news/queryFn?pagetag=1&noFields=channel&nokws=2&fetch=title%2Curl&pageSize=1000&index=cn%2Cmarket_index")
 需要代入的变量：kw(关键词)、startPage(当前页数)、\_(当前时间戳)、pageSize(每页数据条数，这里固定 1000)
 
-**整体思想**：循环遍历关键词，将每个关键词代入到 URL 链接中，遍历每页返回的 1000 条数据，遍历完成后 startPage 自增 1，如果返回的数据小于 1000 条，则说明是最后一页，这时进入下一个关键词，startPage 重置为 1，如果关键词遍历完成，则退出程序。过程中捕获异常，打印和保存错误信息，异常退出时重启，并从上次错误的下一条开始。
+**整体思想**：循环遍历关键词，将每个关键词代入到 URL 链接中，遍历每页返回的 1000 条数据，遍历完成后 startPage 自增 1，如果 startPage 与总页数相等，则进入下一个关键词，startPage 重置为 1，如果关键词遍历完成，则退出程序。过程中捕获异常，打印和保存错误信息，异常退出时重启，并从上次错误的下一条开始。
 
 #### 1.全局变量
 
@@ -53,8 +53,8 @@ self.driver.maximize_window()
 over = False # 退出程序的标志
 word_index = 0 # 关键词索引
 startPage = 1 # 当前页数
-news_index = 0 # 数据索引
-pageCount = 1 # 总页数，打印信息用
+article_index = 0 # 数据索引
+pageCount = 0 # 总页数，打印信息用
 recordCount = 0 # 总数居条数，打印信息用
 ```
 
@@ -122,9 +122,9 @@ def get_html(self):
 
 ```python
 def save_file(self, list):
-    global news_index
+    global article_index
     for i, item in enumerate(list):
-        if i < news_index:  # 去除标题中的特殊符号
+        if i < article_index:  # 去除标题中的特殊符号
             continue
         title = re.sub(r'<[^>]+>|[\/:*?"<>|]|\n', '', item['title'])  # 去除标题中的特殊符号
         self.article_url = item['url']
@@ -136,12 +136,12 @@ def save_file(self, list):
             with open(os.path.join(self.second_path, 'error.txt'), 'a', encoding='utf-8') as file:
                 file.write(
                     f"Message: {e}\nTime: {datetime.now()}, Word: {self.key_words[word_index]}, PageIndex: {startPage}, "
-                    f"newsIndex: {news_index}, Title: {title}, URL: {self.article_url}\n")
+                    f"newsIndex: {article_index}, Title: {title}, URL: {self.article_url}\n")
         finally:
-            news_index += 1
+            article_index += 1
             print(
-                f"关键词: {self.key_words[word_index]}, {startPage}/{pageCount}页, {1000 * (startPage - 1) + news_index}/{recordCount}条, {title}, {self.article_url}")
-    news_index = 0
+                f"关键词: {self.key_words[word_index]}, {startPage}/{pageCount}页, {1000 * (startPage - 1) + article_index}/{recordCount}条, {title}, {self.article_url}")
+    article_index = 0
 ```
 
 #### 5.保存 TXT 和 PDF
