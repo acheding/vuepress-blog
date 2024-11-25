@@ -6,7 +6,7 @@
 
 于是我就心里暗自下定决心，一定要撸一个没有广告的小程序。一周后，这个小程序发布了。
 
-欢迎大家参观和使用我的小程序！小程序名称：**_MahjongScorer_**
+欢迎大家参观和使用我的小程序！小程序名称：**_计了么_**
 
 ![MahjongScorer](https://zhang.beer/static/images/MahjongScorer.jpg)
 

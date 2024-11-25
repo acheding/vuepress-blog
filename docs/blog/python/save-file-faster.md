@@ -10,13 +10,12 @@
 settings = {
 	"recentDestinations": [{
 			"id": "Save as PDF",
-			"origin": "local",
-			"account": ""
+			"origin": "local"
 		}],
 	"selectedDestinationId": "Save as PDF",
-	"version": 2,
-	"isHeaderFooterEnabled": True,
-	"isCssBackgroundEnabled": True,
+	"version": 2,  # 1：默认打印机，2：另存为pdf
+	"isHeaderFooterEnabled": True,  # 是否勾选页眉和页脚
+	"isCssBackgroundEnabled": True,  # 是否勾选背景图形
 	"mediaSize": {
 		"height_microns": 297000,
 		"name": "ISO_A4",
@@ -28,11 +27,10 @@ prefs = {
 	'printing.print_preview_sticky_settings.appState': json.dumps(settings),
 	'savefile.default_directory': self.path,
 	"download.default_directory": self.path,
-	"download.prompt_for_download": False,
-	"plugins.always_open_pdf_externally": True,
-	# "profile.managed_default_content_settings.images": 2,
+	"download.prompt_for_download": False,  # 禁止下载弹窗
+	# "profile.managed_default_content_settings.images": 2,  # 禁用图片加载
 }
-self.options.add_argument('--kiosk-printing')
+self.options.add_argument('--kiosk-printing')  # 静默打印，无需用户点击打印页面的确定按钮
 self.options.add_experimental_option('prefs', prefs)
 # self.options.add_argument("--headless") // 无头模式
 self.options.add_argument("--window-size=1920,1080")
@@ -149,10 +147,12 @@ def save_file(self, list):
 ### 5.保存 TXT 和 PDF
 
 **面临问题**：对于中国网网站上搜索到的内容，来自于其一级域名下众多二级域名官网的文章，大到央视新闻、新华社，小到六盘水日报等，每篇文章的网站不同、结构不同，一个爬虫程序通常只是为了某个网站而诞生，对于错综复杂的中国网上的文章有点棘手。
+
 **解决方法**：遍历每篇文章 DOM 上所有节点，累加每个标签的文本长度，找到文本内容最多的那个标签的父节点，然后遍历该父节点下所有子节点的文本。
 ![](https://zhang.beer/static/images/save-file-faster-1.png)
 
 **面临问题**：虽说这样速度提升了不少，但是还是不够快，主要在于网站中杂余信息太多，导致 PDF 太大。
+
 **解决方法**：前面提到 pdfkit 可以通过网址转 PDF，即将网站整份保存 PDF，其效果和 Selenium 类似，另外一种方式就是通过字符串转 PDF，将 Beautiful Soup 的 prettify()方法得到的标准 HTML 字符串按需截取，保留正文部分，然后转成 PDF 保存，这样不仅内容精简干练，而且也因为文件体积小加快了程序的执行，二者对比图如下。
 ![](https://zhang.beer/static/images/save-file-faster-2.png)
 ![](https://zhang.beer/static/images/save-file-faster-3.png)
