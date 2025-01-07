@@ -111,7 +111,7 @@ module.exports = {
           title: "Python",
           collapsable: false,
           sidebarDepth: 2,
-          children: ["", "save-file-faster"],
+          children: ["", "save-file-faster", "spider-captcha"],
         },
       ],
       "/blog/java/": [
