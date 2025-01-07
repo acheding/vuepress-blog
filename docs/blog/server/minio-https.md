@@ -1,6 +1,6 @@
 # minio 实现 https 访问
 
-由于网站已经安装 SSL 证书实现了 https 访问，但是 minio 下的文件却还是暴露在 http 中的，在 https 网站中访问 http 图片会失败，网上找了一圈发现大都是通过给 minio 安装 SSL 证书的方式，例如这篇博客：[minio 配置 https](https://blog.csdn.net/abc_cml/article/details/127634593)
+由于网站已经安装 SSL 证书实现了 https 访问，但是 minio 下的文件却还是暴露在 http 中的，在 https 网站中访问 http 图片会失败，网上找了一圈发现大都是通过给 minio 安装 SSL 证书的方式，例如这篇博客：[minio 配置 https](./minio-https.md)
 
 比较复杂，那有没有什么比较简单的方式来实现呢？立即推：万能的 nginx 转发大法。
 

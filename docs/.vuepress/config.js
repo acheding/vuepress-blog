@@ -95,6 +95,7 @@ module.exports = {
             "springboot-minio",
             "mysql-connect",
             "winscp-script",
+            "virtual-machine-network",
           ],
         },
       ],
@@ -103,7 +104,7 @@ module.exports = {
           title: "小程序",
           collapsable: false, // 左上角大标题“小程序”是否可展开
           sidebarDepth: 2,
-          children: ["", "vxmp-register", "vxmp-develop"],
+          children: ["", "vxmp-register", "vxmp-develop", "random"],
         },
       ],
       "/blog/python/": [
