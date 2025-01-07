@@ -1,10 +1,10 @@
 # Python 爬虫保存文件竟能这么快！
 
-最近的任务之一是爬取[中国网](http://query.china.com.cn/query/cn.html?kw=%E6%8A%BD%E6%B0%B4%E8%93%84%E8%83%BD# "中国网")的行业训练语料，搜索众多关键词下的文章，并将每篇文章的内容保存一份 TXT 和 PDF 。
+最近的任务之一是搜索一个网站众多关键词下的海量文章，并将每篇文章的内容保存一份 TXT 和 PDF 。然而这些文章大概也是爬取其他网站的数据收录而来，文章的 DOM 结构形形色色，无疑增加了爬虫的工作量。让我们来对症下药吧。
 
 ## 一、Selenium
 
-传统的写法，大抵是用 Selenium 去访问每篇文章的网址，获取正文内容保存 TXT，调用浏览器打印机将网页另存为 PDF。起先我也如此，然而对于仅仅“能源”关键词就有 12w 条数据的网站来说，在频繁打开网页和浏览器打印机的作用下，速度始终太慢，而且经过尝试，唯一的提速手段打开无头模式后台执行也因为会导致无法正常保存 PDF 而被舍弃。
+传统的写法，大抵是用 Selenium 去访问每篇文章的网址，获取正文内容保存 TXT，调用浏览器打印机将网页另存为 PDF。起先我也如此，然而对于仅仅一个关键词就有数十万条数据的网站来说，在频繁打开网页和浏览器打印机的作用下，速度始终太慢，而且经过尝试，唯一的提速手段打开无头模式后台执行也因为会导致无法正常保存 PDF 而被舍弃。
 
 ```python
 settings = {
@@ -42,20 +42,19 @@ self.driver.maximize_window()
 
 本着“机器不用看页面”的思想，想到了第 2 种方案：通过接口调用得到数据，解析网址获取正文。那 PDF 该如何保存呢？就在这时，一个名为 pdfkit 的库映入眼帘，可以通过网址、文件、字符串等直接生成 PDF，真是恰好一举两得。
 
-中国网链接前缀：[http://query.china.com.cn/news/queryFn?pagetag=1&noFields=channel&nokws=2&fetch=title%2Curl&pageSize=1000&index=cn%2Cmarket_index](http://query.china.com.cn/news/queryFn?pagetag=1&noFields=channel&nokws=2&fetch=title%2Curl&pageSize=1000&index=cn%2Cmarket_index "http://query.china.com.cn/news/queryFn?pagetag=1&noFields=channel&nokws=2&fetch=title%2Curl&pageSize=1000&index=cn%2Cmarket_index")
-需要代入的变量：kw(关键词)、startPage(当前页数)、\_(当前时间戳)、pageSize(每页数据条数，这里固定 1000)
+该网站需要代入的变量：keyword(关键词)、pageNum(当前页数)、ts(当前时间戳)、pageSize(每页数据条数，这里固定 1000)
 
-**整体思想**：循环遍历关键词，将每个关键词代入到 URL 链接中，遍历每页返回的 1000 条数据，遍历完成后 startPage 自增 1，如果 startPage 与总页数相等，则进入下一个关键词，startPage 重置为 1，如果关键词遍历完成，则退出程序。过程中捕获异常，打印和保存错误信息，异常退出时重启，并从上次错误的下一条开始。
+**整体思想**：循环遍历关键词，将每个关键词代入到 URL 链接中，遍历每页返回的 1000 条数据，遍历完成后 pageNum 自增 1，如果 pageNum 与总页数相等，则进入下一个关键词，pageNum 重置为 1，如果关键词遍历完成，则退出程序。过程中捕获异常，打印和保存错误信息，异常退出时重启，并从上次错误的下一条开始。
 
 ### 1.全局变量
 
 ```python
 over = False # 退出程序的标志
 word_index = 0 # 关键词索引
-startPage = 1 # 当前页数
+pageNum = 1 # 当前页数
 article_index = 0 # 文章索引
 pageCount = 0 # 总页数，打印信息用
-recordCount = 0 # 总数居条数，打印信息用
+articleCount = 0 # 总数居条数，打印信息用
 ```
 
 ### 2.初始化
@@ -65,11 +64,10 @@ pdfkit 依赖 wkhtmltopdf 插件，需要提供插件的地址，当然也可以
 
 ```python
 def __init__(self):
-    self.target_url = 'http://query.china.com.cn/news/queryFn?pagetag=1&noFields=channel&nokws=2&fetch=title%2Curl&pageSize=1000&index=cn%2Cmarket_index'
+    self.target_url = 'https://xxx.xxx'
     self.article_url = ""  # 每篇文章的地址
-    self.key_words = ["抽水蓄能", "抽蓄", "储能", "光伏", "风电", "能源", "水利", "水电",
-                      "工程", "城乡建设", "城市规划", "交通规划", "基础设施", "水务", "水资源", "水网", "土壤修复"]
-    self.first_path = r"D:\spiders\中国网"
+    self.key_words = ["", "", "..."]
+    self.first_path = r"D:\spiders"
     self.second_path = ""
     self.path_wk = r'E:\wkhtmltopdf\bin\wkhtmltopdf.exe'
     self.config = pdfkit.configuration(wkhtmltopdf=self.path_wk)
@@ -83,7 +81,7 @@ def __init__(self):
 
 ```python
 def get_html(self):
-    global over, word_index, startPage, pageCount, recordCount
+    global over, word_index, pageNum, pageCount, articleCount
     if not os.path.exists(self.first_path):  # 没有一级目录就新建
         os.makedirs(self.first_path)
     for i, word in enumerate(self.key_words[word_index:]):
@@ -91,25 +89,24 @@ def get_html(self):
         if not os.path.exists(self.second_path):  # 没有二级目录就新建
             os.makedirs(self.second_path)
         while True:
-            kw = word
-            _ = int(time() * 1000)  # 生成当前时间戳
-            whole_url = self.target_url + f'&startPage={startPage}&kw={kw}&_={_}'
+            keyword = word
+            whole_url = self.target_url + f'&pageNum={pageNum}&keyword={keyword}'
             print(whole_url)
             res = requests.get(whole_url)
             if res.status_code == 200:
                 res = json.loads(res.text[9:-2])
                 pageCount = res['pageCount']
-                recordCount = res['recordCount']
-                recordList = res['recordList']
-                self.save_file(recordList)
-                if startPage == pageCount:  # 最后一页操作完
+                articleCount = res['articleCount']
+                articleList = res['articleList']
+                self.save_file(articleList)
+                if pageNum == pageCount:  # 最后一页操作完
                     word_index += 1
-                    startPage = 1
+                    pageNum = 1
                     pageCount = 1
-                    recordCount = 0
+                    articleCount = 0
                     break
                 else:
-                    startPage += 1
+                    pageNum += 1
             else:
                 print(f"请求失败，状态码：{res.status_code}")
                 sleep(3)
@@ -135,28 +132,24 @@ def save_file(self, list):
             print(f"保存文件失败：{e}")
             with open(os.path.join(self.second_path, 'error.txt'), 'a', encoding='utf-8') as file:
                 file.write(
-                    f"Message: {e}\nTime: {datetime.now()}, Word: {self.key_words[word_index]}, PageIndex: {startPage}, "
+                    f"Message: {e}\nTime: {datetime.now()}, Word: {self.key_words[word_index]}, PageIndex: {pageNum}, "
                     f"newsIndex: {article_index}, Title: {title}, URL: {self.article_url}\n")
         finally:
             article_index += 1
             print(
-                f"关键词: {self.key_words[word_index]}, {startPage}/{pageCount}页, {1000 * (startPage - 1) + article_index}/{recordCount}条, {title}, {self.article_url}")
+                f"关键词: {self.key_words[word_index]}, {pageNum}/{pageCount}页, {1000 * (pageNum - 1) + article_index}/{articleCount}条, {title}, {self.article_url}")
     article_index = 0
 ```
 
 ### 5.保存 TXT 和 PDF
 
-**面临问题**：对于中国网网站上搜索到的内容，来自于其一级域名下众多二级域名官网的文章，大到央视新闻、新华社，小到六盘水日报等，每篇文章的网站不同、结构不同，一个爬虫程序通常只是为了某个网站而诞生，对于错综复杂的中国网上的文章有点棘手。
+**面临问题 1**：由于该网站上每篇文章的源网站不同、结构不同，一个爬虫程序通常只是为了某个特定网站而诞生，对于错综复杂的网站结构有点棘手。
 
-**解决方法**：遍历每篇文章 DOM 上所有节点，累加每个标签的文本长度，找到文本内容最多的那个标签的父节点，然后遍历该父节点下所有子节点的文本。
-![](https://zhang.beer/static/images/save-file-faster-1.png)
+**面临问题 2**：虽说这样速度提升了不少，但是还是不够快，主要在于网站中杂余信息太多，广告栏、推荐栏、排行榜什么的，夹杂在正文中间，导致 PDF 太大。
 
-**面临问题**：虽说这样速度提升了不少，但是还是不够快，主要在于网站中杂余信息太多，导致 PDF 太大。
+**解决方法 1**：遍历每篇文章 DOM 上所有节点，累加每个标签的文本长度，找到文本内容最多的那个标签的父节点，然后遍历该父节点下所有子节点的文本。
 
-**解决方法**：前面提到 pdfkit 可以通过网址转 PDF，即将网站整份保存 PDF，其效果和 Selenium 类似，另外一种方式就是通过字符串转 PDF，将 Beautiful Soup 的 prettify()方法得到的标准 HTML 字符串按需截取，保留正文部分，然后转成 PDF 保存，这样不仅内容精简干练，而且也因为文件体积小加快了程序的执行，二者对比图如下。
-![](https://zhang.beer/static/images/save-file-faster-2.png)
-![](https://zhang.beer/static/images/save-file-faster-3.png)
-![](https://zhang.beer/static/images/save-file-faster-4.png)
+**解决方法 2**：前面提到 pdfkit 可以通过网址转 PDF，即将网站整份保存 PDF，其效果和 Selenium 类似，另外一种方式就是通过字符串转 PDF，将 Beautiful Soup 的 prettify()方法得到的标准 HTML 字符串按需截取，保留正文部分，然后转成 PDF 保存，取其精华，去其糟粕，这样不仅内容精简干练，而且也因为文件体积小加快了程序的执行。
 
 ```python
 def url_to_text_and_pdf(self, path):
