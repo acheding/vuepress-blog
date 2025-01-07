@@ -66,7 +66,7 @@ cv.destroyAllWindows()
 
 muggle_ocr 是一款轻量级的 ocr 识别库，使用非常简单，其强项主要是用于识别各类验证码。
 
-### 1.1 代码
+### 2.1 代码
 
 ```python
 
@@ -89,7 +89,7 @@ recognize_text()
 
 ```
 
-### 1.2 效果
+### 2.2 效果
 
 ![spider-captcha-3](https://zhang.beer/static/images/spider-captcha-3.png)
 
