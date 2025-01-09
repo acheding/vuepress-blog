@@ -11,7 +11,7 @@
 
 使用 Python 中的 OpenCV 库进行图像预处理（边缘保留滤波、灰度化、二值化、形态学操作和逻辑运算），然后结合 pytesseract 进行文字识别。
 
-pytesseract 需要配合安装在本地的 tesseract-ocr.exe 文件一起使用，tesseract-ocr.exe 安装教程可参考这里：[Tesseract Ocr 文字识别](https://github.com/vipstone/faceai/blob/master/doc/tesseractOCR.md)，
+pytesseract 需要配合安装在本地的 tesseract-ocr.exe 文件一起使用，tesseract-ocr.exe 安装教程可参考这里：[Tesseract Ocr 文字识别](https://github.com/vipstone/faceai/blob/master/doc/tesseractOCR.md)。
 
 ### 1.1 代码
 
