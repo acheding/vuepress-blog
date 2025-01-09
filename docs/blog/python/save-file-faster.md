@@ -54,7 +54,7 @@ word_index = 0 # 关键词索引
 pageNum = 1 # 当前页数
 article_index = 0 # 文章索引
 pageCount = 0 # 总页数，打印信息用
-articleCount = 0 # 总数居条数，打印信息用
+articleCount = 0 # 总数据条数，打印信息用
 ```
 
 ### 2.初始化
