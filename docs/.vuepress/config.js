@@ -34,6 +34,7 @@ module.exports = {
           { text: "小程序", link: "/blog/vxmp/" },
           { text: "Python", link: "/blog/python/" },
           { text: "Java", link: "/blog/java/" },
+          { text: "Onlyoffice", link: "/blog/onlyoffice/" },
         ],
       },
       { text: "GitHub", link: "https://github.com/acheding" },
@@ -125,6 +126,14 @@ module.exports = {
             "springboot-cos",
             "springboot-minio",
           ],
+        },
+      ],
+      "/blog/onlyoffice/": [
+        {
+          title: "Onlyoffice",
+          collapsable: false,
+          sidebarDepth: 2,
+          children: ["", "compile"],
         },
       ],
     },
