@@ -1,8 +1,8 @@
 # Onlyoffice 源码编译
 
-## 1.搭建编译镜像
+## 1 搭建编译镜像
 
-### 1.1 下载 build_tools 编译工具
+### 1.1 下载编译工具源码
 
 ```bash
 git clone https://github.com/ONLYOFFICE/build_tools.git
@@ -10,10 +10,8 @@ git clone https://github.com/ONLYOFFICE/build_tools.git
 
 ### 1.2 搭建镜像
 
-1. 进入 build_tools 目录
-
-2. 修改 dockerfile，改为手动执行编译命令： CMD ["tail", "-f", "/dev/null"]
-3. 构建镜像
+1. 进入 build_tools 目录。
+2. 构建镜像。
 
    ```bash
    docker build -t onlyoffice/documentserver .
@@ -25,62 +23,46 @@ git clone https://github.com/ONLYOFFICE/build_tools.git
 docker run -dit --name onlyoffice -p 8080:80 onlyoffice/documentserver bash
 ```
 
-### 1.4 执行编译
+### 1.4 进入编译容器
 
 ```bash
 docker exec -it onlyoffice bash
+```
 
+### 1.5 执行编译
+
+```bash
 cd tools/linux
 
 python3 ./automate.py server
 ```
 
-该过程持续 5 个小时，挂 vpn，否则容易断
+该过程会下载 onlyoffice 源码并编译，编译结果存放于 build_tools/out 目录，持续约 5 个小时，需要配合使用科学上网工具。
 
-## 2. 修改代码
+## 2 修改 onlyoffice 源码
 
 ### 2.1 修改连接数
 
-1.进入目录 build_tools/server/Common/sources/contants.js，修改连接数
+1.编辑 build_tools/server/Common/sources/contants.js，修改连接数。
 
-```bash
+```js
 exports.LICENSE_CONNECTIONS = 20; # 将此处修改你想要的连接数
 ```
 
 ### 2.2 开启 advancedApi
 
-进入目录 server/Common/sources/license.js，开启 advancedApi，即开启 iframe 端接口命令的能力
+编辑 server/Common/sources/license.js，设置 advancedApi 为 true，即开启 iframe 端接口命令的能力。
 
 ```js
 exports.readLicense = async function () {
-  const c_LR = constants.LICENSE_RESULT;
-  var now = new Date();
-  var startDate = new Date(
-    Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1)
-  ); //first day of current month
+  ...
   return [
     {
-      count: 1,
-      type: c_LR.Success,
-      packageType: constants.PACKAGE_TYPE_OS,
-      mode: constants.LICENSE_MODE.None,
-      branding: false,
-      connections: constants.LICENSE_CONNECTIONS,
-      connectionsView: constants.LICENSE_CONNECTIONS,
-      customization: false,
-      // advancedApi: false,
+      ...
       advancedApi: true,
-      usersCount: 0,
-      usersViewCount: 0,
-      usersExpire: constants.LICENSE_EXPIRE_USERS_ONE_DAY,
-      hasLicense: false,
-      buildDate: oBuildDate,
-      startDate: startDate,
-      endDate: null,
-      customerId: "",
-      alias: "",
+      ...
     },
-    null,
+    null
   ];
 };
 ```
@@ -91,11 +73,11 @@ exports.readLicense = async function () {
 vim /build_tools/tools/linux/automate.py
 ```
 
-```bash
+```py
 build_tools_params = ["--branch", branch,
-"--module", modules,
-"--update", "0", #此处修改为 0，1 会拉取最新代码
-"--qt-dir", os.getcwd() + "/qt_build/Qt-5.9.9"] + params
+                    "--module", modules,
+                    "--update", "0",    #此处修改为0，1会拉取最新代码
+                    "--qt-dir", os.getcwd() + "/qt_build/Qt-5.9.9"] + params
 ```
 
 ### 2.4 执行编译
@@ -106,11 +88,13 @@ cd /build\*tools/tools/linux
 python3 ./automate.py server
 ```
 
-等待编译，约半小时左右
+等待编译，约半小时左右。
 
 ### 2.5 添加 connector 代码
 
-进入目录/build_tools/out/linux_64/onlyoffice/documentserver/web-apps/apps/api/documents/api.js，在 DocsAPI.DocEditor 函数中添加 connetor 相关代码
+编辑 build_tools/out/linux_64/onlyoffice/documentserver/web-apps/apps/api/documents/api.js，在 DocsAPI.DocEditor 函数中添加 connetor 相关代码。
+
+::: details 点击查看代码
 
 ```js
 (function (m) {
@@ -456,14 +440,24 @@ function _createConnector(settings) {
 }
 ```
 
-## 3. 启动服务（方式一）
+:::
+
+同时，在 DocsAPI.DocEditor 函数的 return 中添加 createConnector。
+
+```js
+return {
+  createConnector: _createConnector,
+};
+```
+
+## 3 启动服务（方式一）
 
 ### 3.1 安装 nginx
 
 ```bash
-sudo apt-get install nginx
+apt-get install nginx
 
-sudo rm -f /etc/nginx/sites-enabled/default
+rm -f /etc/nginx/sites-enabled/default
 
 vim /etc/nginx/sites-available/onlyoffice-documentserver
 ```
@@ -512,7 +506,7 @@ service nginx start
 ### 3.2 安装 postgresql
 
 ```bash
-sudo apt-get install postgresql
+apt-get install postgresql
 
 service postgresql start
 
@@ -526,7 +520,7 @@ psql -hlocalhost -Uonlyoffice -d onlyoffice -f linux_64/onlyoffice/documentserve
 ### 3.3 安装 rabbitmq-server
 
 ```bash
-sudo apt-get install rabbitmq-server
+apt-get install rabbitmq-server
 
 service rabbitmq-server start
 ```
@@ -582,7 +576,9 @@ NODE_CONFIG_DIR=$PWD/../Common/config \
 ./docservice
 ```
 
-### 3.7 官网示例工程测试 1.下载官网示例工程源码
+### 3.7 官网示例工程测试
+
+1.下载官网示例工程源码
 
 ```bash
 git clone https://github.com/ONLYOFFICE/document-editor-vue.git
@@ -610,21 +606,31 @@ yarn install
 yarn storybook
 ```
 
-## 4. 启动服务（方式二）
+### 3.8 精简镜像
+
+整个流程下来，镜像体积可达 30 多 G，事实上，只需要最后编译结果 out 目录即可运行，为了便于移植和部署，可先执行 3.4 和 3.5，然后将 out 目录导出，编写 Dockerfile，构建精简镜像，使用启动脚本，自动完成 3.3、3.2、3.3、3.6 步骤，以下为 Dockerfile 和 init.sh 代码。
+
+[Dockerfile](https://zhang.beer/static/images/Dockerfile0)
+
+[init.sh](https://zhang.beer/static/images/init.sh)
+
+## 4 启动服务（方式二）(推荐)
 
 ### 4.1 构建 deb 包
 
-1. 下载 document-server-package 源码
+1. 进入编译容器
+
+```bash
+docker exec -it onlyoffice bash
+```
+
+2. 下载 document-server-package 源码
 
 ```bash
 git clone https://github.com/ONLYOFFICE/document-server-package.git
 ```
 
-2. 将 document-server-package 源码拷贝进编译容器
-
-```bash
-docker cp document-server-package onlyoffice:/
-```
+![compile-list](https://zhang.beer/static/images/compile-list.png)
 
 3. 编译 deb 包
 
@@ -646,13 +652,13 @@ cd /document-server-package
 PRODUCT_VERSION='8.3.0' BUILD_NUMBER='1' make deb
 ```
 
-deb 文件在/document-server-package/deb/onlyoffice-documentserver_8.3.0-1_amd64.deb
+deb 文件在/document-server-package/deb/onlyoffice-documentserver_8.3.0-1_amd64.deb。
 
-下次构建只留一个 template 文件夹,其余的文件夹和文件都需要删掉
+下次构建只需保留 template 文件夹，其余的文件夹和文件都需要删掉。
 
 ### 4.2 构建部署镜像
 
-1. 下载 Docker-DocumentServer 源码
+1. 退出容器，宿主机下载 Docker-DocumentServer 源码
 
 ```bash
 git clone https://github.com/ONLYOFFICE/Docker-DocumentServer.git
@@ -664,13 +670,16 @@ git clone https://github.com/ONLYOFFICE/Docker-DocumentServer.git
 docker cp onlyoffice:/document-server-package/deb/onlyoffice-documentserver_8.3.0-1_amd64.deb .
 ```
 
-3. 修改 Docker-DocumentServer 的 Dockerfile 和 run-document-server.sh
-   文件如下
+3. 替换 Docker-DocumentServer 的 Dockerfile 和 run-document-server.sh 文件如下
+
+[Dockerfile](https://zhang.beer/static/images/Dockerfile)
+
+[run-document-server.sh](https://zhang.beer/static/images/run-document-server.sh)
 
 4. 编译
 
 ```bash
-docker build -t onlyoffice:20250213 .
+docker build -t onlyoffice/documentserver:20250213 .
 ```
 
 ### 4.3 使用服务
@@ -678,11 +687,10 @@ docker build -t onlyoffice:20250213 .
 1. 启动镜像
 
 ```bash
-docker run -dit -p 8888:80 -p 8889:5432 --name onlyoffice --restart=always -e JWT_ENABLED=false onlyoffice/documentserver bash
+docker run -dit -p 8888:80 --name onlyoffice --restart=always -e JWT_ENABLED=false onlyoffice/documentserver:20250213 bash
 ```
 
-2. 打开 welcome 页面
-   ip:8888
+2. 打开 welcome 页面（ip:8888）
 3. 开启 example，命令在 welcome 页面
 
 ```bash
