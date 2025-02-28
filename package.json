@@ -15,7 +15,7 @@
     "docs:build": "vuepress build docs"
   },
   "engines": {
-    "node": "22.x"
+    "node": "16.x"
   },
   "dependencies": {}
 }

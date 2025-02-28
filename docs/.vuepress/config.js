@@ -96,6 +96,7 @@ module.exports = {
             "mysql-connect",
             "winscp-script",
             "virtual-machine-network",
+            "clash-for-linux",
           ],
         },
       ],
