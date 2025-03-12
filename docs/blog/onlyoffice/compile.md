@@ -80,6 +80,20 @@ build_tools_params = ["--branch", branch,
                     "--qt-dir", os.getcwd() + "/qt_build/Qt-5.9.9"] + params
 ```
 
+### 2.4 增加 Api 方法
+
+```bash
+vim /sdkjs/word/apiBuilder.js
+```
+
+```js
+Api.prototype["HistoryTurnOff"] = Api.prototype.HistoryTurnOff;
+
+Api.prototype.HistoryTurnOff = function () {
+  AscCommon.HistoryTurnOff();
+};
+```
+
 ### 2.4 执行编译
 
 ```bash
@@ -641,7 +655,7 @@ cat << EOF >> Makefile
 deb_dependencies: \$(DEB_DEPS) #编译文件追加 dependencies
 EOF
 
-PRODUCT_VERSION='8.3.0' BUILD_NUMBER='1' make deb_dependencies
+PRODUCT_VERSION='8.2.2' BUILD_NUMBER='1' make deb_dependencies
 
 cd deb/build
 
@@ -649,10 +663,10 @@ sudo apt build-dep ./
 
 cd /document-server-package
 
-PRODUCT_VERSION='8.3.0' BUILD_NUMBER='1' make deb
+PRODUCT_VERSION='8.2.2' BUILD_NUMBER='1' make deb
 ```
 
-deb 文件在/document-server-package/deb/onlyoffice-documentserver_8.3.0-1_amd64.deb。
+deb 文件在/document-server-package/deb/onlyoffice-documentserver_8.2.2-1_amd64.deb。
 
 下次构建只需保留 template 文件夹，其余的文件夹和文件都需要删掉。
 
@@ -667,7 +681,7 @@ git clone https://github.com/ONLYOFFICE/Docker-DocumentServer.git
 2. 拷贝 deb 文件至源码，重命名为 onlyoffice.deb
 
 ```bash
-docker cp onlyoffice:/document-server-package/deb/onlyoffice-documentserver_8.3.0-1_amd64.deb .
+docker cp onlyoffice:/document-server-package/deb/onlyoffice-documentserver_8.2.2-1_amd64.deb .
 ```
 
 3. 替换 Docker-DocumentServer 的 Dockerfile 和 run-document-server.sh 文件如下
@@ -679,7 +693,7 @@ docker cp onlyoffice:/document-server-package/deb/onlyoffice-documentserver_8.3.
 4. 编译
 
 ```bash
-docker build -t onlyoffice/documentserver:20250213 .
+docker build -t onlyoffice/documentserver:8.2.2-1 .
 ```
 
 ### 4.3 使用服务
@@ -687,10 +701,11 @@ docker build -t onlyoffice/documentserver:20250213 .
 1. 启动镜像
 
 ```bash
-docker run -dit -p 8888:80 --name onlyoffice --restart=always -e JWT_ENABLED=false onlyoffice/documentserver:20250213 bash
+docker run -dit -p 8888:80 -p 5432:5432 --name onlyoffice --restart=always -e JWT_ENABLED=false onlyoffice/documentserver:8.2.2-1 bash
 ```
 
 2. 打开 welcome 页面（ip:8888）
+
 3. 开启 example，命令在 welcome 页面
 
 ```bash
@@ -699,7 +714,7 @@ docker exec onlyoffice sudo supervisorctl start ds:example
 docker exec onlyoffice sudo sed 's,autostart=false,autostart=true,' -i /etc/supervisor/conf.d/ds-example.conf
 ```
 
-4. 设置文件大小
+4. 设置文件大小和允许私有 IP 访问
 
 ```bash
 docker exec -it onlyoffice bash
@@ -708,12 +723,6 @@ vim /etc/onlyoffice/documentserver/default.json
 limits_tempfile_upload :524288000（500M）
 maxDownloadBytes: 524288000（500M）
 uncompressed :"500MB"
-```
-
-5. 修改私有 IP 访问
-
-```bash
-vim /etc/onlyoffice/documentserver/default.json
 
 "request-filtering-agent" : {
    "allowPrivateIPAddress": true,
@@ -721,16 +730,30 @@ vim /etc/onlyoffice/documentserver/default.json
 }
 ```
 
-6. 重启服务
+5. 重启服务
 
 ```bash
 docker restart onlyoffice
 ```
 
+6. 修改 postgresql 配置，允许远程连接
+
+```bash
+vim /etc/postgresql/16/main/postgresql.conf
+# 将 listen_addresses = localhost 修改如下
+listen_addresses = '*'
+
+vim /etc/postgresql/16/main/pg_hba.conf
+# 文件最后新增一行
+host  all  all  0.0.0.0/0  md5
+
+# 重启 postgresql
+service postgresql restart
+```
+
 查看 converter 日志
 
 ```bash
-
 cat /var/log/onlyoffice/documentserver/converter/out.log
 ```
 

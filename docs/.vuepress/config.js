@@ -8,7 +8,8 @@ module.exports = {
     [
       "@vuepress/last-updated",
       {
-        transformer: (timestamp, lang) => {
+        transformer: (timestamp, lang) =>
+        {
           const moment = require("moment");
           moment.locale(lang);
           return moment(timestamp).fromNow();
@@ -134,7 +135,7 @@ module.exports = {
           title: "Onlyoffice",
           collapsable: false,
           sidebarDepth: 2,
-          children: ["", "compile"],
+          children: ["", "compile", "configure"],
         },
       ],
     },
