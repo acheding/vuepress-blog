@@ -150,8 +150,10 @@
 
 ### 设置环境变量
 
+> 临时为当前会话设置环境变量，等号左右无空格
+
 ```bash
-export BUILD_NUMBER = 2
+export BUILD_NUMBER=2
 ```
 
 ### 查看变量
